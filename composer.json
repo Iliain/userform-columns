@@ -1,0 +1,24 @@
+{
+  "name": "iliain/userform-columns",
+  "description": "Duplicates the Userform Field Group feature to allow adding columns to forms",
+  "type": "silverstripe-vendormodule",
+  "homepage": "https://github.com/iliain/userform-columns",
+  "keywords": ["silverstripe", "module", "userforms", "columns"],
+  "require": {
+    "silverstripe/vendor-plugin": "^1.0",
+    "silverstripe/framework": "~4.0",
+    "silverstripe/userforms": "^5"
+  },
+  "extra": {
+    "expose": [
+      "client"
+    ]
+  },
+  "autoload": {
+    "psr-4": {
+      "Iliain\\UserformColumns\\": "src/"
+    }
+  },
+  "prefer-stable": true,
+  "minimum-stability": "dev"
+}

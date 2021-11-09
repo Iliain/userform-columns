@@ -1,0 +1,15 @@
+---
+name: userform-columns
+---
+SilverStripe\UserForms\Model\UserDefinedForm:
+  extensions:
+    - Iliain\UserformColumns\Extensions\UserFormColumnExtension
+DNADesign\ElementalUserForms\Model\ElementForm:
+  extensions:
+    - Iliain\UserformColumns\Extensions\UserFormColumnExtension
+
+SilverStripe\Admin\LeftAndMain:
+  extra_requirements_css:
+    - 'iliain/userform-columns:client/css/fields.css'
+  extra_requirements_javascript:
+    - 'iliain/userform-columns:client/js/fields.js'
