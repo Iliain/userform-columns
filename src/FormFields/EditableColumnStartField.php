@@ -30,7 +30,15 @@ class EditableColumnStartField extends EditableFormField
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
-        $fields->removeByName(['MergeField', 'Default', 'Validation', 'DisplayRules']);
+        $fields->removeByName(['MergeField', 'Default', 'Validation', 'DisplayRules', 'RightTitle']);
+
+        $titleField = $fields->fieldByName('Root.Main.Title');
+        $titleField->setTitle('Column class')->setDescription('Set the primary class used to manage the column width. E.g. col-md-6');
+
+        $nameField = $fields->fieldByName('Root.Main.Name');
+        $fields->removeByName('Name');
+        $fields->insertAfter('ExtraClass', $nameField);
+
         return $fields;
     }
 
@@ -46,6 +54,13 @@ class EditableColumnStartField extends EditableFormField
     public function getInlineClassnameField($column, $fieldClasses)
     {
         return LabelField::create($column, $this->CMSTitle);
+    }
+
+    public function getInlineTitleField($column)
+    {
+        return TextField::create($column, false)
+            ->setAttribute('placeholder', 'Column Class')
+            ->setAttribute('data-placeholder', 'Column Class');
     }
 
     public function showInReports()
