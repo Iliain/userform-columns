@@ -1,2 +1,2 @@
 <!-- Start Column -->
-<div class="item col-2">
+<div class="$Title<% if $extraClass %> $extraClass<% end_if %>">
