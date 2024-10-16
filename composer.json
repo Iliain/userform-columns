@@ -5,9 +5,8 @@
   "homepage": "https://github.com/iliain/userform-columns",
   "keywords": ["silverstripe", "module", "userforms", "columns"],
   "require": {
-    "silverstripe/vendor-plugin": "^1.0",
-    "silverstripe/framework": "~4.0",
-    "silverstripe/userforms": "^5"
+    "silverstripe/framework": "^4 || ^5",
+    "silverstripe/userforms": "^5 || ^6"
   },
   "extra": {
     "expose": [
