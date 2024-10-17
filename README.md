@@ -23,10 +23,10 @@ Customise the dropdown options for column classes via yaml:
 ```yaml
 Iliain\UserformColumns\FormFields\EditableColumnStartField:
   css_classes:
-	'col-12': 'Full width'
-	'col-6': 'Half width'
-	'col-4': 'Third width'
-	'col-3': 'Quarter width'
+    'col-12': 'Full width'
+    'col-6': 'Half width'
+    'col-4': 'Third width'
+    'col-3': 'Quarter width'
 ```
 
 You can also set the default classes for a row via yaml, or override the template:
