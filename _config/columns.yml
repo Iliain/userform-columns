@@ -11,5 +11,5 @@ DNADesign\ElementalUserForms\Model\ElementForm:
 SilverStripe\Admin\LeftAndMain:
   extra_requirements_css:
     - 'iliain/userform-columns:client/css/fields.css'
-  extra_requirements_javascript:
-    - 'iliain/userform-columns:client/js/fields.js'
+  # extra_requirements_javascript:
+  #   - 'iliain/userform-columns:client/js/fields.js'

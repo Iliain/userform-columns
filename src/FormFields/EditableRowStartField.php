@@ -2,16 +2,15 @@
 
 namespace Iliain\UserformColumns\FormFields;
 
-use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\TextField;
 use SilverStripe\Forms\LabelField;
-use SilverStripe\Forms\DropdownField;
+use SilverStripe\Forms\HiddenField;
 use SilverStripe\UserForms\Model\EditableFormField;
 
-class EditableColumnStartField extends EditableFormField
+class EditableRowStartField extends EditableFormField
 {
     private static $has_one = [
-        'End' => EditableColumnEndField::class,
+        'End' => EditableRowEndField::class,
     ];
 
     private static $owns = [
@@ -26,27 +25,30 @@ class EditableColumnStartField extends EditableFormField
 
     private static $literal = true;
 
-    private static $table_name = 'EditableColumnStartField';
+    private static $table_name = 'EditableRowStartField';
 
     public function getCMSFields()
     {
-        $this->beforeUpdateCMSFields(function (FieldList $fields) {
-            $fields->removeByName(['Title']);
+        $fields = parent::getCMSFields();
+        $fields->removeByName(['MergeField', 'Default', 'Validation', 'DisplayRules', 'RightTitle']);
 
-            $fields->addFieldToTab('Root.Main', DropdownField::create('Title', 'Column width', $this->config()->get('css_classes') ?? [])
-                ->setEmptyString('Select column width'));
-        });
+        $titleField = $fields->fieldByName('Root.Main.Title');
+        $titleField->setTitle('Row class');
 
-        return parent::getCMSFields();
+        $nameField = $fields->fieldByName('Root.Main.Name');
+        $fields->removeByName('Name');
+        $fields->insertAfter('ExtraClass', $nameField);
+
+        return $fields;
     }
 
     public function getCMSTitle()
     {
         $title = $this->getFieldNumber()
             ?: $this->Title
-                ?: 'column';
+                ?: 'row';
 
-        return sprintf('Column %s', $title);
+        return sprintf('Row %s', $title);
     }
 
     public function getInlineClassnameField($row, $fieldClasses)
@@ -54,12 +56,9 @@ class EditableColumnStartField extends EditableFormField
         return LabelField::create($row, $this->CMSTitle);
     }
 
-    public function getInlineTitleField($column)
+    public function getInlineTitleField($row)
     {
-        $cssClasses = $this->config()->get('css_classes');
-
-        return DropdownField::create($column, false, $cssClasses ?? [])
-            ->setEmptyString('Select column width');
+        return HiddenField::create($row);
     }
 
     public function showInReports()
@@ -70,8 +69,9 @@ class EditableColumnStartField extends EditableFormField
     public function getFormField()
     {
         $field = TextField::create($this->Name, $this->Title ?: false, $this->Default)
-            ->setFieldHolderTemplate(EditableColumnStartField::class  . '_holder')
-            ->setTemplate(EditableColumnStartField::class);
+            ->setFieldHolderTemplate(EditableRowStartField::class  . '_holder')
+            ->setTemplate(EditableRowStartField::class)
+            ->addExtraClass($this->config()->get('default_classes'));
 
         return $field;
     }

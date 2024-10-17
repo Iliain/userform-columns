@@ -14,3 +14,21 @@
 .ss-gridfield-item.incolumn td.col-reorder {
   background: #7DD6E8;
 }
+
+
+.ss-gridfield-item[data-class='Iliain\\UserformColumns\\FormFields\\EditableRowStartField'] td {
+  border-top: 3px solid #fa5c77;
+}
+
+.ss-gridfield-item[data-class='Iliain\\UserformColumns\\FormFields\\EditableRowStartField'] label {
+  font-weight: bold;
+  padding-bottom: 0;
+}
+
+.ss-gridfield-item[data-class='Iliain\\UserformColumns\\FormFields\\EditableRowEndField'] td {
+  border-bottom: 3px solid #fa5c77;
+}
+
+.ss-gridfield-item.incolumn td.col-reorder {
+  background: ##fa5c77;
+}
